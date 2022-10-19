@@ -1,0 +1,551 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: FMDataAPI19
+  description: Filemaker Server 19 DataAPI
+host: YOURHOST
+basePath: /
+schemes:
+  - https
+consumes: []
+produces:
+  - application/json
+paths:
+  /fmi/data/vLatest/productInfo:
+    get:
+      summary: Product info
+      description: Product info
+      operationId: ProductInfo
+      parameters: []
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/databases:
+    get:
+      summary: Database Names
+      description: Database Names
+      operationId: DatabaseNames
+      parameters: []
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/layouts:
+    get:
+      summary: Layout Names
+      description: Layout Names
+      operationId: LayoutNames
+      parameters: []
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/scripts:
+    get:
+      summary: Script Names
+      description: Script Names
+      operationId: ScriptNames
+      parameters: []
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}:
+    get:
+      summary: Layouts Metadata
+      description: Layouts Metadata
+      operationId: LayoutsMetadata
+      parameters:
+        - in: path
+          name: layoutName
+          type: string
+          required: true
+          description: Layout Name to get.
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - name: recordId
+          default: '{{recordID}}'
+          in: query
+          type: string
+          required: true
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/metadata:
+    get:
+      summary: Old Layouts Metadata
+      description: Old Layouts Metadata
+      operationId: OldLayoutMetadata
+      parameters:
+        - in: path
+          name: layoutName
+          type: string
+          required: true
+          description: Layout Name to get.
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - name: recordId
+          default: '{{recordID}}'
+          in: query
+          type: string
+          required: true
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/records:
+    post:
+      summary: Create record
+      description: Create record
+      operationId: CreateRecord
+      parameters:
+        - in: path
+          name: layoutName
+          type: string
+          required: true
+          description: Layout Name to get.
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Content-Type
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              fieldData:
+                type: object
+                properties:
+                  First Name:
+                    type: string
+                    description: First Name
+                  Last Name:
+                    type: string
+                    description: Last Name
+                description: fieldData
+            default:
+              fieldData:
+                First Name: Jhon
+                Last Name: Doe
+          required: true
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+    get:
+      summary: Get records
+      description: Get records
+      operationId: GetRecords
+      parameters:
+        - in: path
+          name: layoutName
+          type: string
+          required: true
+          description: Layout Name to get.
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/records/{recordID}:
+    delete:
+      summary: Delete record
+      description: Delete record
+      operationId: DeleteRecord
+      parameters:
+        - in: path
+          name: layoutName
+          type: string
+          required: true
+          description: Layout Name to get.
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - in: path
+          name: recordID
+          type: integer
+          required: true
+          description: Numeric ID of the record to get.
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+    post:
+      summary: Duplicate Record
+      description: Duplicate Record
+      operationId: DuplicateRecord
+      parameters:
+        - in: path
+          name: layoutName
+          type: string
+          required: true
+          description: Layout Name to get.
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - in: path
+          name: recordID
+          type: integer
+          required: true
+          description: Numeric ID of the record to get.
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Content-Type
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+    patch:
+      summary: Edit record
+      description: Edit record
+      operationId: EditRecord
+      parameters:
+        - in: path
+          name: layoutName
+          type: string
+          required: true
+          description: Layout Name to get.
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - in: path
+          name: recordID
+          type: integer
+          required: true
+          description: Numeric ID of the record to get.
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Content-Type
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              fieldData:
+                type: object
+                properties:
+                  First Name:
+                    type: string
+                    description: First Name
+                  Last Name:
+                    type: string
+                    description: Last Name
+                description: fieldData
+            default:
+              fieldData:
+                First Name: John
+                Last Name: Doe
+          required: true
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+    get:
+      summary: Get Single Record By Id
+      description: Get Single Record By Id
+      operationId: GetSingleRecordById
+      parameters:
+        - in: path
+          name: layoutName
+          type: string
+          required: true
+          description: Layout Name to get.
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - in: path
+          name: recordID
+          type: integer
+          required: true
+          description: Numeric ID of the record to get.
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/_find:
+    post:
+      summary: Find records
+      description: Find records
+      operationId: FindRecords
+      parameters:
+        - in: path
+          name: layoutName
+          type: string
+          required: true
+          description: Layout Name to get.
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Content-Type
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              query:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    First Name:
+                      type: string
+                      description: First Name
+                description: query
+            default:
+              query:
+                - First Name: '=="Jhon"'
+          required: true
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/databases/{databaseName}/sessions:
+    post:
+      summary: Login
+      description: Login
+      operationId: Login
+      parameters:
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Content-Type
+      responses:
+        '200':
+          description: '200'
+          schema:
+            type: object
+            properties:
+              response:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: token
+                description: response
+              messages:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      description: code
+                    message:
+                      type: string
+                      description: message
+                description: messages
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/databases/{databaseName}/sessions/{sessionToken}:
+    delete:
+      summary: Log out
+      description: Log out
+      operationId: LogOut
+      parameters:
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - in: path
+          name: sessionToken
+          type: string
+          required: true
+          description: Numeric ID of the token to get.
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/validateSessions:
+    get:
+      summary: Validate Session
+      description: Validate Session
+      operationId: ValidateSession
+      parameters: []
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/records/{recordID}/{containerFieldName}:
+    post:
+      summary: Upload to Container Field
+      description: Upload to Container Field
+      operationId: UploadToContainerField
+      parameters:
+        - in: path
+          name: layoutName
+          type: string
+          required: true
+          description: Layout Name to get.
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - in: path
+          name: recordID
+          type: integer
+          required: true
+          description: Numeric ID of the record to get.
+        - in: path
+          name: containerFieldName
+          type: integer
+          required: true
+          description: Container ID to set.
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/x-www-form-urlencoded
+          description: Content-Type
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/records/{recordID}/{containerFieldName}/{containerFieldRepetition}:
+    post:
+      summary: Upload to Container Field Copy
+      description: Upload to Container Field Copy
+      operationId: UploadToContainerFieldCopy
+      parameters:
+        - in: path
+          name: layoutName
+          type: string
+          required: true
+          description: Layout Name to get.
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - in: path
+          name: recordID
+          type: integer
+          required: true
+          description: Numeric ID of the record to get.
+        - in: path
+          name: containerFieldName
+          type: integer
+          required: true
+          description: Container ID to set.
+        - in: path
+          name: containerFieldRepetition
+          type: integer
+          required: true
+          description: Container ID of Rep to set.
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+  /fmi/data/vLatest/databases/{databaseName}/globals:
+    patch:
+      summary: Set Global Fields
+      description: Set Global Fields
+      operationId: SetGlobalFields
+      parameters:
+        - in: path
+          name: databaseName
+          type: string
+          required: true
+          description: Databasename to get.
+        - name: Content-Type
+          in: header
+          required: true
+          type: string
+          default: application/json
+          description: Content-Type
+        - name: body
+          in: body
+          schema:
+            type: object
+            properties:
+              globalFields:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Global Field:
+                      type: string
+                      description: Global Field
+                description: globalFields
+            default:
+              globalFields:
+                - Global Field: '1'
+          required: true
+      responses:
+        default:
+          description: default
+          schema: {}
+      x-ms-visibility: advanced
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions:
+  basic_auth:
+    type: basic
+security:
+  - basic_auth: []
+tags: []
