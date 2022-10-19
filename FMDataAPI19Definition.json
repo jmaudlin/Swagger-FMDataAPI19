@@ -1,0 +1,783 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Filemaker Server 19 DataAPI",
+    "version": "1.0.0",
+    "title": "FMDataAPI19"
+  },
+  "host": "YOURHOST",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "security": [
+    {
+      "basic_auth": []
+    }
+  ],
+  "paths": {
+    "/fmi/data/vLatest/productInfo": {
+      "get": {
+        "summary": "Product info",
+        "description": "Product info",
+        "operationId": "ProductInfo",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/databases": {
+      "get": {
+        "summary": "Database Names",
+        "description": "Database Names",
+        "operationId": "DatabaseNames",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/layouts": {
+      "get": {
+        "summary": "Layout Names",
+        "description": "Layout Names",
+        "operationId": "LayoutNames",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/scripts": {
+      "get": {
+        "summary": "Script Names",
+        "description": "Script Names",
+        "operationId": "ScriptNames",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}": {
+      "get": {
+        "summary": "Layouts Metadata",
+        "description": "Layouts Metadata",
+        "operationId": "LayoutsMetadata",
+        "parameters": [
+          {
+            "name": "layoutName",
+            "in": "path",
+            "description": "Layout Name to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "recordId",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "default": "{{recordID}}"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/metadata": {
+      "get": {
+        "summary": "Old Layouts Metadata",
+        "description": "Old Layouts Metadata",
+        "operationId": "OldLayoutMetadata",
+        "parameters": [
+          {
+            "name": "layoutName",
+            "in": "path",
+            "description": "Layout Name to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "recordId",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "default": "{{recordID}}"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/records": {
+      "get": {
+        "summary": "Get records",
+        "description": "Get records",
+        "operationId": "GetRecords",
+        "parameters": [
+          {
+            "name": "layoutName",
+            "in": "path",
+            "description": "Layout Name to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      },
+      "post": {
+        "summary": "Create record",
+        "description": "Create record",
+        "operationId": "CreateRecord",
+        "parameters": [
+          {
+            "name": "layoutName",
+            "in": "path",
+            "description": "Layout Name to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Content-Type",
+            "required": true,
+            "type": "string",
+            "default": "application/json"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/body"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/records/{recordID}": {
+      "get": {
+        "summary": "Get Single Record By Id",
+        "description": "Get Single Record By Id",
+        "operationId": "GetSingleRecordById",
+        "parameters": [
+          {
+            "name": "layoutName",
+            "in": "path",
+            "description": "Layout Name to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "recordID",
+            "in": "path",
+            "description": "Numeric ID of the record to get.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      },
+      "post": {
+        "summary": "Duplicate Record",
+        "description": "Duplicate Record",
+        "operationId": "DuplicateRecord",
+        "parameters": [
+          {
+            "name": "layoutName",
+            "in": "path",
+            "description": "Layout Name to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "recordID",
+            "in": "path",
+            "description": "Numeric ID of the record to get.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Content-Type",
+            "required": true,
+            "type": "string",
+            "default": "application/json"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      },
+      "delete": {
+        "summary": "Delete record",
+        "description": "Delete record",
+        "operationId": "DeleteRecord",
+        "parameters": [
+          {
+            "name": "layoutName",
+            "in": "path",
+            "description": "Layout Name to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "recordID",
+            "in": "path",
+            "description": "Numeric ID of the record to get.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      },
+      "patch": {
+        "summary": "Edit record",
+        "description": "Edit record",
+        "operationId": "EditRecord",
+        "parameters": [
+          {
+            "name": "layoutName",
+            "in": "path",
+            "description": "Layout Name to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "recordID",
+            "in": "path",
+            "description": "Numeric ID of the record to get.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Content-Type",
+            "required": true,
+            "type": "string",
+            "default": "application/json"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/body_1"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/_find": {
+      "post": {
+        "summary": "Find records",
+        "description": "Find records",
+        "operationId": "FindRecords",
+        "parameters": [
+          {
+            "name": "layoutName",
+            "in": "path",
+            "description": "Layout Name to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Content-Type",
+            "required": true,
+            "type": "string",
+            "default": "application/json"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/body_2"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/databases/{databaseName}/sessions": {
+      "post": {
+        "summary": "Login",
+        "description": "Login",
+        "operationId": "Login",
+        "parameters": [
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Content-Type",
+            "required": true,
+            "type": "string",
+            "default": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200"
+            }
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/databases/{databaseName}/sessions/{sessionToken}": {
+      "delete": {
+        "summary": "Log out",
+        "description": "Log out",
+        "operationId": "LogOut",
+        "parameters": [
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sessionToken",
+            "in": "path",
+            "description": "Numeric ID of the token to get.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/validateSessions": {
+      "get": {
+        "summary": "Validate Session",
+        "description": "Validate Session",
+        "operationId": "ValidateSession",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/records/{recordID}/{containerFieldName}": {
+      "post": {
+        "summary": "Upload to Container Field",
+        "description": "Upload to Container Field",
+        "operationId": "UploadToContainerField",
+        "parameters": [
+          {
+            "name": "layoutName",
+            "in": "path",
+            "description": "Layout Name to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "recordID",
+            "in": "path",
+            "description": "Numeric ID of the record to get.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "containerFieldName",
+            "in": "path",
+            "description": "Container ID to set.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Content-Type",
+            "required": true,
+            "type": "string",
+            "default": "application/x-www-form-urlencoded"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/databases/{databaseName}/layouts/{layoutName}/records/{recordID}/{containerFieldName}/{containerFieldRepetition}": {
+      "post": {
+        "summary": "Upload to Container Field Copy",
+        "description": "Upload to Container Field Copy",
+        "operationId": "UploadToContainerFieldCopy",
+        "parameters": [
+          {
+            "name": "layoutName",
+            "in": "path",
+            "description": "Layout Name to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "recordID",
+            "in": "path",
+            "description": "Numeric ID of the record to get.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "containerFieldName",
+            "in": "path",
+            "description": "Container ID to set.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "containerFieldRepetition",
+            "in": "path",
+            "description": "Container ID of Rep to set.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    },
+    "/fmi/data/vLatest/databases/{databaseName}/globals": {
+      "patch": {
+        "summary": "Set Global Fields",
+        "description": "Set Global Fields",
+        "operationId": "SetGlobalFields",
+        "parameters": [
+          {
+            "name": "databaseName",
+            "in": "path",
+            "description": "Databasename to get.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Content-Type",
+            "required": true,
+            "type": "string",
+            "default": "application/json"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/body_3"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "x-ms-visibility": "advanced"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basic_auth": {
+      "type": "basic"
+    }
+  },
+  "definitions": {
+    "fmidatavLatestdatabasesdatabaseNamelayoutslayoutNamerecords_fieldData": {
+      "type": "object",
+      "properties": {
+        "First Name": {
+          "type": "string",
+          "description": "First Name"
+        },
+        "Last Name": {
+          "type": "string",
+          "description": "Last Name"
+        }
+      },
+      "description": "fieldData"
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "fieldData": {
+          "$ref": "#/definitions/fmidatavLatestdatabasesdatabaseNamelayoutslayoutNamerecords_fieldData"
+        }
+      }
+    },
+    "body_1": {
+      "type": "object",
+      "properties": {
+        "fieldData": {
+          "$ref": "#/definitions/fmidatavLatestdatabasesdatabaseNamelayoutslayoutNamerecords_fieldData"
+        }
+      }
+    },
+    "fmidatavLatestdatabasesdatabaseNamelayoutslayoutName_find_query": {
+      "type": "object",
+      "properties": {
+        "First Name": {
+          "type": "string",
+          "description": "First Name"
+        }
+      }
+    },
+    "body_2": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "array",
+          "description": "query",
+          "items": {
+            "$ref": "#/definitions/fmidatavLatestdatabasesdatabaseNamelayoutslayoutName_find_query"
+          }
+        }
+      }
+    },
+    "inline_response_200_response": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "description": "token"
+        }
+      },
+      "description": "response"
+    },
+    "inline_response_200_messages": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "code"
+        },
+        "message": {
+          "type": "string",
+          "description": "message"
+        }
+      }
+    },
+    "inline_response_200": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "#/definitions/inline_response_200_response"
+        },
+        "messages": {
+          "type": "array",
+          "description": "messages",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_messages"
+          }
+        }
+      }
+    },
+    "fmidatavLatestdatabasesdatabaseNameglobals_globalFields": {
+      "type": "object",
+      "properties": {
+        "Global Field": {
+          "type": "string",
+          "description": "Global Field"
+        }
+      }
+    },
+    "body_3": {
+      "type": "object",
+      "properties": {
+        "globalFields": {
+          "type": "array",
+          "description": "globalFields",
+          "items": {
+            "$ref": "#/definitions/fmidatavLatestdatabasesdatabaseNameglobals_globalFields"
+          }
+        }
+      }
+    }
+  },
+  "parameters": {},
+  "responses": {}
+}
